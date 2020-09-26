@@ -10,5 +10,9 @@
   <%= @product.quantity %>
 </p>
 
+<figure>
+  <%= image_tag @product.photo, {width: 200} %>
+</figure>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
