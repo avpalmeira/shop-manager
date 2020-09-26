@@ -9,6 +9,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% if current_user %>
+    <p>
+      Hi, <%= current_user.email %>.
+      <a href="/signout" alt="">Logout</a>
+    </p>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path %> or
+    <%= link_to 'Signup', new_user_registration_path %>
+  <% end %>
+
   <body>
     <%= yield %>
   </body>
