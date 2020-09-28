@@ -26,7 +26,7 @@ gem 'devise'
 # Handle .env files
 gem 'dotenv-rails'
 # Handle permissions
-gem 'cancan'
+gem 'cancancan'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
