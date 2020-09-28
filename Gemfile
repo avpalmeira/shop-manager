@@ -27,6 +27,8 @@ gem 'devise'
 gem 'dotenv-rails'
 # Handle permissions
 gem 'cancancan'
+# Use Amazon S3
+gem 'aws-sdk-s3', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
