@@ -9,9 +9,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <% if current_user %>
+  <% if user_signed_in? %>
     <p>
       Hi, <%= current_user.email %>.
+      <% if current_user.admin? %>
+        <span>Admin.</span>
+      <% else %>
+        <span>Affiliate.</span>
+      <% end %>
       <a href="/signout" alt="">Logout</a>
     </p>
   <% else %>
