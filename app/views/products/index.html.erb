@@ -26,5 +26,7 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<% if can? :update, @products %>
+  <%= link_to 'New Product', new_product_path %>
+<% end %>
 <%= link_to 'Home', root_path %>
