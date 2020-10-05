@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    # show affiliate code if user is signed in
+    if user_signed_in?
+      @affiliate_code = helpers.get_affiliate_code(@product, current_user)
+    end
   end
 
   # GET /products/new
