@@ -11,10 +11,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    # show affiliate code if user is signed in
-    if user_signed_in?
-      @affiliate_code = helpers.get_affiliate_code(@product, current_user)
-    end
   end
 
   # GET /products/new
@@ -61,6 +57,12 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def decode
+    # @code_info = helpers.decode_affiliate_code(params[:code])
+    @code = params[:code]
+    # render :decode
   end
 
   private

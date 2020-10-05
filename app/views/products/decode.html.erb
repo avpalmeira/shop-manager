@@ -1,0 +1,9 @@
+<h1>Decode</h1>
+
+<% if @code.nil? %>
+  <p>You must insert you code as URL Param such as: /decode?code=[your_code].</p>
+<% else %>
+  <p>This is the info about your code: <%= decode_affiliate_code(@code) %>.</p>
+<% end %>
+
+<%= link_to 'Products', products_path %>

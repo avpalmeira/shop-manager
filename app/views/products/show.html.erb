@@ -14,7 +14,7 @@
 
 <% if user_signed_in? %>
   <span>This is your affiliate code:</span>
-  <input type="text" readonly value="<%= @affiliate_code %>">
+  <input type="text" readonly value="<%= get_affiliate_code(@product, current_user) %>">
   <br>
 <% else %>
   <p>You must be signed in to see the product's affiliate code.</p>

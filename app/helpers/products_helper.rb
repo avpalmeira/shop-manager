@@ -7,13 +7,22 @@ module ProductsHelper
     text = product.id.to_s + '-' + user.id.to_s
     cipher = OpenSSL::Cipher.new('AES-256-CBC')
     cipher.encrypt
-    cipher.random_key
-    cipher.random_iv
-    encrypted = cipher.update(text) + cipher.final
-    encoded = Base64.encode64(encrypted)
+    cipher.key = CipherKey
+    cipher.iv = CipherIv
+    encrypted = cipher.update(text)
+    encrypted << cipher.final
+    encoded = Base64.urlsafe_encode64(encrypted, padding: false)
     return encoded
   end
 
   def decode_affiliate_code(code)
+    decoded = Base64.urlsafe_decode64(code)
+    decipher = OpenSSL::Cipher.new('AES-256-CBC')
+    decipher.decrypt
+    decipher.key = CipherKey
+    decipher.iv = CipherIv
+    decrypted = decipher.update(decoded)
+    decrypted << decipher.final
+    return decrypted
   end
 end

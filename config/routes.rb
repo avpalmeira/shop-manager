@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  get 'products/decode', to: 'products#decode'
   resources :products
   devise_for :users, skip: [:sessions]
 	as :user do
