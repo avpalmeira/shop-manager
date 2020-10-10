@@ -6,11 +6,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    render json: @products, status: :ok
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    render json: @product, status: :ok
   end
 
   # GET /products/new

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'home#index'
   get 'products/decode', to: 'products#decode'
-  resources :products
+  defaults format: :json do
+    resources :products
+  end
   devise_for :users, skip: [:sessions]
 	as :user do
 		get 'signin', to: 'devise/sessions#new', as: :new_user_session
