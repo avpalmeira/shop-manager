@@ -14,15 +14,15 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    render json: @product, status: :ok
-  end
+    code = user_signed_in? ?
+      helpers.get_affiliate_code(@product, current_user) : ''
 
-  # GET /products/new
-  def new
-  end
-
-  # GET /products/1/edit
-  def edit
+    product = {
+      :name => @product.name,
+      :quantity => @product.quantity,
+      :code => code
+    }
+    render json: product, status: :ok
   end
 
   # POST /products
@@ -64,9 +64,9 @@ class ProductsController < ApplicationController
   end
 
   def decode
-    # @code_info = helpers.decode_affiliate_code(params[:code])
-    @code = params[:code]
-    # render :decode
+    code = params[:code]
+    decoded_info = { :info => helpers.decode_affiliate_code(code) }
+    render json: decoded_info, status: :ok
   end
 
   private
