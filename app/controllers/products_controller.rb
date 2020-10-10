@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   # before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_user!, except: [:index, :show]
   load_and_authorize_resource
 
   # GET /products
   # GET /products.json
   def index
+    count = @products.count
+    response.set_header('Content-Range', count.to_s)
     render json: @products, status: :ok
   end
 

@@ -5,7 +5,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     # if user
-      if user.admin?
+      if user#.admin?
         can :manage, :all
       else
         can :read, :all
