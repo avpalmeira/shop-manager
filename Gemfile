@@ -29,6 +29,8 @@ gem 'dotenv-rails'
 gem 'cancancan'
 # Use Amazon S3
 gem 'aws-sdk-s3', require: false
+# Configure CORS
+gem 'rack-cors'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
