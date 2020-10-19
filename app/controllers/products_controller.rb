@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
   def index
     count = @products.count
     response.set_header('Content-Range', count.to_s)
-    render json: @products, status: :ok
   end
 
   # GET /products/1
