@@ -15,7 +15,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         :head,
         :options
       ],
-      :expose => ['Content-Range']
+      :expose => [
+        'Content-Range',
+        'access-token',
+        'client',
+        'uid'
+      ]
   end
 end
 

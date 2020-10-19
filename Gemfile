@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Devise as authentication engine
 gem 'devise'
+gem 'devise_token_auth'
 # Handle .env files
 gem 'dotenv-rails'
 # Handle permissions
