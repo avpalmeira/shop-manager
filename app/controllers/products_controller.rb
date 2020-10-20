@@ -13,15 +13,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    code = user_signed_in? ?
-      helpers.get_affiliate_code(@product, current_user) : ''
-
-    product = {
-      :name => @product.name,
-      :quantity => @product.quantity,
-      :code => code
-    }
-    render json: product, status: :ok
   end
 
   # POST /products
