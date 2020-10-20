@@ -32,6 +32,8 @@ gem 'cancancan'
 gem 'aws-sdk-s3', require: false
 # Configure CORS
 gem 'rack-cors'
+# Use Active Model Serializers
+# gem 'active_model_serializers'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
