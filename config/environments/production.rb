@@ -111,5 +111,5 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # Set host parameter
-  Rails.application.routes.default_url_options = { host: "https://franqueados.herokuapp.com" }
+  Rails.application.routes.default_url_options = { host: ENV['PROD_HOST'] }
 end

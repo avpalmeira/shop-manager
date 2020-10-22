@@ -3,8 +3,8 @@
 # Config CORS
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:3000',
-      'franqueados-web.herokuapp.com'
+    origins ENV['ALLOW_LOCAL'],
+      ENV['ALLOW_CLIENT']
 
     resource '*',
       :headers => :any,
