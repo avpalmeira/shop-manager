@@ -8,26 +8,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <% if user_signed_in? %>
-    <p>
-      Hi, <%= current_user.email %>.
-      <% if current_user.admin? %>
-        <span>Admin.</span>
-      <% else %>
-        <span>Affiliate.</span>
-      <% end %>
-      <a href="/signout" alt="">Logout</a>
-    </p>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %> or
-    <%= link_to 'Signup', new_user_registration_path %>
-  <% end %>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "#{name}" %>
-  <% end %>
-
   <body>
     <%= yield %>
   </body>
