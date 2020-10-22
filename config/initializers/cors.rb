@@ -1,9 +1,10 @@
 # Be sure to restart your server when you modify this file.
 
-# Allow CORS to all origins
+# Config CORS
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins 'localhost:8000',
+      'https://franqueados-web.herokuapp.com'
 
     resource '*',
       :headers => :any,
