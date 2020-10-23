@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    filter_products(params)
     count = @products.count
     response.set_header('Content-Range', count.to_s)
   end
@@ -64,6 +65,18 @@ class ProductsController < ApplicationController
     # def set_product
     #   @product = Product.find(params[:id])
     # end
+    
+    # Filter products by given key and value passed on request
+    def filter_products(params)
+      if params[:filter] != "{}"
+        filter = JSON.parse(params[:filter])
+        filter.each do |property, value|
+          @products = @products.select do |product|
+            product[property].to_s.include? value
+          end
+        end
+      end
+    end
 
     # Only allow a list of trusted parameters through.
     def product_params
