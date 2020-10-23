@@ -7,8 +7,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     filter_products(params)
-    count = @products.count
-    response.set_header('Content-Range', count.to_s)
+    range_products(params, response)
   end
 
   # GET /products/1
@@ -66,9 +65,9 @@ class ProductsController < ApplicationController
     #   @product = Product.find(params[:id])
     # end
     
-    # Filter products by given key and value passed on request
+    # Filter products by given keys and values
     def filter_products(params)
-      if params[:filter] != "{}"
+      if params[:filter] != "{}" #TODO: use a more generic conditional
         filter = JSON.parse(params[:filter])
         filter.each do |property, value|
           @products = @products.select do |product|
@@ -76,6 +75,21 @@ class ProductsController < ApplicationController
           end
         end
       end
+    end
+
+    # Set the range of the products shown
+    def range_products(params, resp)
+      format_range = "*"
+      total = @products.count
+      if params[:range] && !params[:range].empty?
+        range = JSON.parse(params[:range])
+        if ((range.is_a? Array) && range.size == 2)
+          @products = @products[range[0]..range[1]]
+          format_range = "#{range[0]+1}-#{range[1]+1}" 
+        end
+      end
+      content_range = "products #{format_range}/#{total.to_s}"
+      resp.set_header('content-range', content_range)
     end
 
     # Only allow a list of trusted parameters through.
