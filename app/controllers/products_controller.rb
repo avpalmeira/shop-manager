@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   def index
     filter_products(params)
     range_products(params, response)
+    order_products(params)
   end
 
   # GET /products/1
@@ -90,6 +91,20 @@ class ProductsController < ApplicationController
       end
       content_range = "products #{format_range}/#{total.to_s}"
       resp.set_header('content-range', content_range)
+    end
+
+    # Set the order of products shown
+    def order_products(params)
+      if params[:sort] && !params[:sort].empty?
+        order = JSON.parse(params[:sort])
+        if ((order.is_a? Array) && order.size == 2)
+          # sort ASC (default) or DESC by given property
+          direction = order[1]
+          property = order[0].to_sym
+          @products.sort_by! { |product| product[property] }
+          @products.reverse! if direction == "DESC"
+        end
+      end
     end
 
     # Only allow a list of trusted parameters through.
